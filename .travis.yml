@@ -7,7 +7,7 @@ services:
     - mysql
 
 before_install:
-    - mysql -uroot -e "grant all on belajar.* to test@localhost identified by 'java'"
+    - mysql -uroot -e "grant all on belajar.* to test@localhost identified by 'password'"
     - mysql -uroot -e "drop database if exists belajar"
     - mysql -uroot -e "create database belajar"
 
