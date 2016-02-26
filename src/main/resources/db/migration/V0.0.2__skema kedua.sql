@@ -1,0 +1,1 @@
+ALTER TABLE belajar.product MODIFY id VARCHAR(50) NOT NULL;
