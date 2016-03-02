@@ -1,15 +1,20 @@
 language: java
-
 jdk:
-    - oraclejdk8
-
+- oraclejdk8
 services:
-    - mysql
-
+- mysql
 before_install:
-    - mysql -uroot -e "grant all on belajar.* to test@localhost identified by 'password'"
-    - mysql -uroot -e "drop database if exists belajar"
-    - mysql -uroot -e "create database belajar"
-
+- mysql -uroot -e "grant all on belajar.* to test@localhost identified by 'password'"
+- mysql -uroot -e "drop database if exists belajar"
+- mysql -uroot -e "create database belajar"
 after_success:
-    - mvn jacoco:report coveralls:report
+- mvn jacoco:report coveralls:report
+deploy:
+  provider: openshift
+  user: andreluckyanto@ymail.com
+  password:
+    secure: OrByNgdFktaoEMnIkX195vww12BfizO4Ymvio38RNvi9K9foPiwuX37bGG0d8OVehB39SgE/gQARdxuOHra9sOkyIn0iRbQQ+HdGXhPPx+qCz67e/gL5jb8nrl8pFrmv9semcZ0m7obJq2+hf19Vy3AiaVN3iW41gg4F1iGtYoaXncxpixq8LD5VGUcSznPPC+Yp+cpauTBlCNxYtZTjraSOLWbZFQER7QnjyT71/s58BahzyvDLVVA++294AqK2fC8K1WEgYmG52LyhllWgwXtM60PN7VDuFBewhBOD/aHsY0WgitMZGqq3t4uo2cg1p/5HsX1l7FhOObMjUfFqbdLlYCMiZdDqfhUnQ9mKF2ikf/e2A2MND1baM+HTYQT2x1msVHSX15BlUMsAejjWFc95UDDyTrOk1Q2/fE3d2XnYBr5rxIFFNz/jK7a8rA13ZCkhFJwpHiAnArPq1JZbRcO8S8nMSS7wth5wt3CNbpDE5PrsMHUDHxBfEvToabTHWaJfCqKnkL9K8Amw07t4Ds8886vOnQ+TTjW/NEDTZ+vPPKyy68h439St4kuNnw8F1+/yh9iM/7CYuvUGGSbfBQxEiJNlXit5arsDvtu8r/olIw2I7XJlN4DNfHgjkzyCjsO4rC1H86kq4qmIbRmJGdj+n54CPydlaICmOp6nMaw=
+  app: nyoba-ci
+  domain: nyoba-andrelucky
+  on:
+    repo: andrelucky/nyoba-ci
